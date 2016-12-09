@@ -3,6 +3,55 @@
 \label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\sg{I think that the goal of this paper should be to convince readers that Distributed systems require incremental approaches to understanding them}
+\begin{itemize}
+    \item \textbf{Understanding}
+
+        Understanding distributed systems is difficult. Concurrency
+        and non-determinism leads developers to misinterpret their
+        systems behaviour. Indeed, even small systems require complex
+        reasoning to determine if their behaviour is correct.
+
+    \item \textbf{Current Approaches}
+        
+        Developers characteristically log executions; when unspecified or
+        deviant behaviour is observed, the culprit is determined
+        through laborious log inspection. Specifications are useful for
+        defining correct behaviour, but proving that a system adheres
+        to a specification is beyond the capabilities of modern
+        techniques.
+
+
+    \item \textbf{Lack of tools}
+
+        Such shortcomings demand new tools to help developers
+        better understand their systems, and quickly identify deviant
+        behaviour.
+
+    \item \textbf{Visualization}
+
+        Using visualizations, large amounts of information can be
+        concisely, and meaningfully encoded. Distributed state,
+        communication patterns, and data invariants are useful
+        execution artifacts for reasoning about a systems behaviour.
+        However, interpreting them from logs alone is tricky and error
+        prone.
+
+    \item \textbf{Contributions}
+
+        We propose Pangaea, a tool for identifying deviant behaviour
+        in distributed systems. Using novel distributed state
+        differentiation Pangaea builds approximate, high level, finite
+        state machines derived from dynamic behaviour. Deviations
+        from expected state machines can be inspected using a graph of
+        the systems invariants, and communication graph.
+
+    \item \textbf{Eval}
+        We evaluated Pangaea \sg{will we though}
+\end{itemize}
+
+
 Developing distributed systems is a difficult task. Inherent concurrency,
 non-determinism, complicate understanding how a system behaves. Developers
 lack tool for providing insight about the state of a system during it's
