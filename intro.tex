@@ -3,25 +3,47 @@
 \label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The behaviour of distributed systems is often complicated and
+difficult to understand. Even small simple systems require that
+developers reason about concurrancy, and the possibilty of
+communication and node failure. In order to develop correct systems
+and triage bugs developers must construct a menatal model for how
+their system should behave. Typically distributed systems are built by
+first strictly specifing the system, then developing the system to the
+specification. This approach has the advantange that the specification
+can be verified, and that it helps developers build mental models of
+their systems prior to writing
+code~\cite{Newcombe:2015:AWS:2749359.2699417,WilcoxWPTWEA2015}.
+Distributed system specification are simplified versions of the
+software which define finite state machines (FSM), and invariants
+based on protocol specific behaviour. FSM are much easier to reason
+about than source code, and provide developers an intuitive
+understanding of how their system should behave in all cases.
+Invariants are likewise useful in that they constrain the behaviour of
+a system which shrinks the space of behaviours developers need to
+reason about. However, specifications are not source code. As
+implementations grow they drift further from their abstract
+specifications~\cite{917525}. When bugs occur developers typically use
+a systems logs to triage the problem. These logs can be massive, and
+identifiy buggy behaviour is a labourious error prone task.  In order
+to understand their real systems developers require tools which can
+communicate complicated concurrent behaviour. Tracing tools such as
+Dapper~\cite{36356}, and Lprof~\cite{Zhao:2014:LNR:2685048.2685099}
+are usefull for reasoning about specific behavior, but do little to
+reinforce developers mental models. ShiViz~\cite{BeschastnikhWBE2016}
+provisions users with a high level visual of a systems communication,
+and message logs, but does not provide a mechanism for reasoning about
+a nodes state. We propose Pangaea a tool for identifing deviant
+behaviour in distributed systems. Pangaea uses novel techniques for
+building a time curve, or aproximate FSM, from the logs of a system.
+Further, Pangaea encorportes a graphicial representation of likely
+data invariants, and a ShiViz style communciation graph. These
+features allow developers to quickly identify deviant behaviour in
+their systems by contrasting their mental model with state machines
+and invariants detected at runtime. When deviant behavior is detected
+Pangaea provides tools for zooming in on the execution, to examine
+concrete state.
 
-Understanding distributed systems is difficult. Concurrency and
-non-determinism leads developers to misinterpret their systems
-behaviour. Indeed, even small systems require complex reasoning to
-determine if their behaviour is correct.  Developers
-characteristically log executions; when unspecified or deviant
-behaviour is observed, the culprit is determined through laborious log
-inspection. Specifications are useful for defining correct behaviour,
-but proving that a system adheres to a specification is beyond the
-capabilities of modern techniques.  Such shortcomings demand new tools
-to help developers better understand their systems, and quickly
-identify deviant behaviour.  Using visualizations, large amounts of
-information can be concisely, and meaningfully encoded. Distributed
-state, communication patterns, and data invariants are useful
-execution artifacts for reasoning about a systems behaviour.  However,
-interpreting them from logs alone is tricky and error prone.  We
-propose Pangaea, a tool for identifying deviant behaviour in
-distributed systems.  Using novel distributed state differentiation
-Pangaea builds approximate, high level, finite state machines derived
-from dynamic behaviour. Deviations from expected state machines can be
-inspected using a graph of the systems invariants, and communication
-graph. \textbf{We evaluated Pangaea$\dots$}.
+
+
+\textbf{We evaluated Pangaea$\dots$}.
