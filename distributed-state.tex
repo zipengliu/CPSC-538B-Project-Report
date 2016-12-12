@@ -150,7 +150,7 @@ invariants which were not violated. The number of invariants detected can be
 large. Further, many invariants are transitive, and interpreting their
 significance requires expertise. We produce a graph of Dinv's invariant output
 to consolidate large amounts of data and help users understand transitive
-invariants. Section ~\ref{invariant visualization} details our invariant
+invariants. Section~\ref{invariant-graph} details our invariant
 graphing technique.
 
 \subsubsection{Communication Graph}
@@ -165,18 +165,5 @@ canonical way of visualizing message passing is a communication
 graph~\cite{lamport}{ShiViz}. We compute communication graphs from the logs of
 an execution. Logs of a systems execution also contain vector clocks. Using the
 vector clocks from the logs we use the happens-before relationship to construct
-a communication graph. Section~\ref{communication graph} covers the specifics
+a communication graph. Section~\ref{communication-graph} covers the specifics
 of how the graph is rendered.
-
-\begin{itemize}
-    \item \textbf{Properties of distributed state / conventions / specifications}
-    \item \textbf{Collective State and transitions}
-    \item \textbf{Invariants}
-    \item \textbf{Messaging}
-    \item \textbf{Logs}
-    \item \textbf{What operations can be performed on these artifacts of execution}
-    \item \textbf{Diff}
-    \item \textbf{Invariant Checking}
-    \item \textbf{Message ordering}
-    \item \textbf{Logs of Variables}
-\end{itemize}
