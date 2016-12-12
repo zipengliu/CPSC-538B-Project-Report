@@ -80,24 +80,35 @@ v_1,v_2\dots v_n$. A distributed system is composed of nodes $N \in n_1, n_2,
 \dots , n_m$. A snapshot $s$ is a $n x m$ matrix
 
 $s_{m,n} = $
-$\begin{pmatrix}
+$\begin{psmallmatrix}
   v_{1,1} & v_{1,2} & \cdots & v_{1,n} \\
   v_{2,1} & v_{2,2} & \cdots & v_{2,n} \\
   \vdots  & \vdots  & \ddots & \vdots  \\
   v_{m,1} & v_{m,2} & \cdots & v_{m,n} 
- \end{pmatrix}$
+ \end{psmallmatrix}$
 
 Finally $C$ is a partially ordered collection of snapshots $s_1, s_2, \dots
 s_k$ from a systems execution. Computing xor on two snapshots $i,j$ results in
 the matrix 
 
+
+%this matrix is too large for the paper
+%$s^{xor}_{i,j} = $
+%$\begin{psmallmatrix}
+%  xor(v_{i1,1},v_{j1,1}}) & xor(v_{i1,2},v_{j1,2}}) & \cdots & xor(v_{i1,n},v_{j1,n}}) \\
+%  xor(v_{i2,1},v_{j2,1}}) & xor(v_{i2,2},v_{j2,2}}) & \cdots & xor(v_{i2,n},v_{j2,n}}) \\
+%  \vdots  & \vdots  & \ddots & \vdots  \\
+%  xor(v_{im,1},v_{jm,1}}) & xor(v_{im,2},v_{jm,2}}) & \cdots & xor(v_{im,n},v_{jm,n}}) \\
+% \end{psmallmatrix}$
+
+
 $s^{xor}_{i,j} = $
-$\begin{pmatrix}
-  xor(v_{i1,1},v_{j1,1}}) & xor(v_{i1,2},v_{j1,2}}) & \cdots & xor(v_{i1,n},v_{j1,n}}) \\
-  xor(v_{i2,1},v_{j2,1}}) & xor(v_{i2,2},v_{j2,2}}) & \cdots & xor(v_{i2,n},v_{j2,n}}) \\
-  \vdots  & \vdots  & \ddots & \vdots  \\
-  xor(v_{im,1},v_{jm,1}}) & xor(v_{im,2},v_{jm,2}}) & \cdots & xor(v_{im,n},v_{jm,n}}) \\
- \end{pmatrix}$
+$\begin{psmallmatrix}
+    xor(v_{i1,1},v_{j1,1}) & \cdots & xor(v_{i1,n},v_{j1,n}) \\
+    xor(v_{i2,1},v_{j2,1})  & \cdots & xor(v_{i2,n},v_{j2,n}) \\
+    \vdots  & \ddots & \vdots  \\
+    xor(v_{im,1},v_{jm,1}) & \cdots & xor(v_{im,n},v_{jm,n}) \\
+ \end{psmallmatrix}$
 
 We construct a $k$ x $k$ plane $P^{xor}$ where $\forall i,j \in C, P^{xor}_{i,j} =
 s^{xor}_{i,j}$.
