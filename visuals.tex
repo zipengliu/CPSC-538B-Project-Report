@@ -3,9 +3,10 @@
 \label{sec:visuals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Pangaea is composed of 3 primary visual components. Each component is
+Pangaea is composed of three primary visual components. Each component is
 tailored to understanding systems at different granularities. The
-first component is the time curve. The time curve plots a point for
+first component is the time curve, proposed by Bach et. al~\cite{Bach2015timecurves}. 
+The time curve plots a point for
 each snapshot collected from a systems logs. The distance between each
 point is the difference in their state as calculated in
 Section~\ref{differentiation-algorithm}. The points are connected by a
@@ -36,10 +37,26 @@ each point is representative of the system as a whole.  A result of
 calculating the differential of each snapshot, is that system states
 which are similar to one another are clustered together, while
 differing states are further apart.  This clustering allows users to
-quickly associate similar states of their system. Each point is also
+quickly associate similar states of their system. 
+The clustering algorithm is actually a dimension reduction procedure,
+and we use t-SNE~\cite{maaten2008visualizing} to generate the 2D 
+coordinates from the the N-dimension distance matrix, and later 
+normalize and resize it to fit the screen.  We also followed the 
+suggestion made by Bach in the original time curve paper that 
+users usually read from one direction to another (say left to right),
+and hence we rotate the coordinates, whose spacial proximity
+are invariant to rotation, so that the start and end point are
+aligned horizontally.  Before finalizing the position of points,
+we remove overlapping by bouncing off the points that are too close
+to each other, otherwise highly similar states would result in
+serious occlusion, which leads to misunderstanding.
+
+
+Each point is also
 color coded based on their temporal ordering. The first snapshot is
 colored bright red, and the final snapshot is dark brown. All
-intermediate points are colored as an intermediate hue. By coloring
+intermediate points are colored with linear interpolated luminosity. 
+By coloring
 each of the points users can associate clustered state with a time in
 the systems execution. The starting and end snapshots are significant
 because they orient the users reasoning about their system. Starting
@@ -47,21 +64,27 @@ and end points are circled in blue to make them identifiable.
 
 All points in the graph are connected by a single curve. The curve
 begins at the starting point, ends at the end point, and connects all
-points sequentially as they occur in logical time. The curve is color
+points sequentially as they occur in logical time. 
+To prevent the curve from being too angular, we smooth it using Bezier
+curves with control points that are parallel to the line between its
+predecessor and successor.
+The curve is color
 coded identically with the points. It begins as bright red, and
 transitions to dark brown. Where the curve intersects with a point
 their colors match. The purpose of color coding the time curve is to
 allow users to quickly associate a temporal relationship on
-transitions between states. A legend which describes these encodings
+transitions between states. A legend which describes the encoding
 is positioned in the top right of the graph.
 
 Users interact with the curve by selecting an individual snapshot.
 When selected concrete information about the snapshot is provided to
 the user. First, the corresponding cut of the network from on which
-the snapshot was taken is highlighted on the process communication
+the snapshot was taken is auto-scrolled and highlighted on the 
+process communication
 graph (see Section~\ref{sec:communication-graph}). Second the user is
 presented with a table of variables and their values from the
-snapshot. The table contains information about the node a variable was
+snapshot, as shown in Figure~\ref{fig:state-detail}. 
+The table contains information about the node a variable was
 resident on, the name of the variable, the variables type, and its
 value. Additionally a table containing the vector clocks on each node
 is rendered to help users identify the precise moment the snapshot was
@@ -70,6 +93,13 @@ of the system. Users can investigate which variable assignment
 correspond to clusters in the curve. In the cases of divergent or
 unexpected clustering users can associate concrete state with the
 behaviour of their system.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{fig/state-detail}%
+    \caption{The detail of state, including vector clocks and 
+    collected variable values. Only a partial is shown here, 
+    users can scroll down to see more. \label{fig:state-detail}}%
+\end{figure}
 
 In Figure~\ref{fig:put-get-curve} the bright red cluster, and brown
 cluster correspond to snapshots in which put, and get requests were
@@ -85,7 +115,15 @@ beginning of the clusters execution.
     \caption{Time curve generated from an etcd raft cluster processing 50 put requests, followed by 50 get requests.\label{fig:put-get-curve}}%
 \end{figure}
     
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{fig/linear-server}%
+    \caption{Time curve generated from \textbf{TODO}. \label{fig:linear-server}}%
+\end{figure}
 
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{fig/put-get-fail}%
+    \caption{Time curve generated from \textbf{TODO} \label{fig:put-get-fail}}%
+\end{figure}
 
 \subsection{Invariant Graph}
 \label{sec:invariant-graph}
@@ -107,10 +145,15 @@ integers, and a subset of which hold over more general types.
 Specifically a thin black line denotes equality, while a dashed black
 line denotes inequality. Both of these relationships are valid on
 arbitrary data so they are graphed for all types, such as strings,
-booleans, and integers. Light blue triangular edges correspond to the
-\emph{less than} relationship. Two corners of the triangle are attached
+booleans, and integers. 
+We use tapered edges to represent inequality relations.  According to
+the evaluation from Danny Holten et. al~\cite{holten2011extended}, tapered
+edges are suitable to convey direction information in node-link diagrams.
+
+Light blue tapered edges correspond to the
+\emph{less than} relationship. Two corners of the tapered triangle are attached
 to the greater variable, while a single is attached to the lesser.
-Similarly a light blue triangle with a black border represents the
+Similarly a light blue tapered edge with a black border represents the
 \emph{greater than or equal too} relation. Users can select a
 variable, and all transitive relations are highlighted in red. When a
 variable is highlighted, and variables which do not have a transitive

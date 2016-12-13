@@ -33,17 +33,23 @@ are useful for reasoning about specific behaviour, but do little to
 reinforce developers mental models. ShiViz~\cite{BeschastnikhWBE2016}
 provisions users with a high level visual of a systems communication,
 and message logs, but does not provide a mechanism for reasoning about
-a nodes state. We propose Pangaea a tool for identifying deviant
+a nodes state. 
+
+We propose Pangaea a tool for providing overview and identifying deviant
 behaviour in distributed systems. Pangaea uses novel techniques for
-building a time curve, or approximate FSM, from the logs of a system.
+building a ``time curve''~\cite{Bach2015timecurves}, 
+which looks like an approximate FSM, from the logs of an execution.
 Further, Pangaea incorporates a graphical representation of likely
-data invariants, and a ShiViz style communication graph. These
-features allow developers to quickly identify deviant behaviour in
+data invariants, and a ShiViz style communication graph. 
+These features allow developers to quickly 
+capture the big picture of an
+execution, guiding and encouraging users to dig deeper into 
+interesting problems in the system.
+Also, it allows for identifying anomalous behaviour in
 their systems by contrasting their mental model with state machines
 and invariants detected at runtime. When deviant behaviour is detected
 Pangaea provides tools for zooming in on the execution, to examine
-concrete state.
+concrete state.  We will show a few scenarios with traces from
+synthetic distributed systems.
 
-
-
-\textbf{We evaluated Pangaea$\dots$}.
+%\textbf{We evaluated Pangaea$\dots$}.
