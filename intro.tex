@@ -5,12 +5,12 @@
 
 The behaviour of distributed systems is often complicated and
 difficult to understand. Even small simple systems require that
-developers reason about concurrancy, and the possibilty of
+developers reason about concurrency, and the possibility of
 communication and node failure. In order to develop correct systems
-and triage bugs developers must construct a menatal model for how
+and triage bugs developers must construct a mental model for how
 their system should behave. Typically distributed systems are built by
-first strictly specifing the system, then developing the system to the
-specification. This approach has the advantange that the specification
+first strictly specifying the system, then developing the system to the
+specification. This approach has the advantage that the specification
 can be verified, and that it helps developers build mental models of
 their systems prior to writing
 code~\cite{Newcombe:2015:AWS:2749359.2699417,WilcoxWPTWEA2015}.
@@ -25,22 +25,22 @@ reason about. However, specifications are not source code. As
 implementations grow they drift further from their abstract
 specifications~\cite{917525}. When bugs occur developers typically use
 a systems logs to triage the problem. These logs can be massive, and
-identifiy buggy behaviour is a labourious error prone task.  In order
+identifying buggy behaviour is a laborious error prone task.  In order
 to understand their real systems developers require tools which can
 communicate complicated concurrent behaviour. Tracing tools such as
 Dapper~\cite{36356}, and Lprof~\cite{Zhao:2014:LNR:2685048.2685099}
-are usefull for reasoning about specific behavior, but do little to
+are useful for reasoning about specific behaviour, but do little to
 reinforce developers mental models. ShiViz~\cite{BeschastnikhWBE2016}
 provisions users with a high level visual of a systems communication,
 and message logs, but does not provide a mechanism for reasoning about
-a nodes state. We propose Pangaea a tool for identifing deviant
+a nodes state. We propose Pangaea a tool for identifying deviant
 behaviour in distributed systems. Pangaea uses novel techniques for
-building a time curve, or aproximate FSM, from the logs of a system.
-Further, Pangaea encorportes a graphicial representation of likely
-data invariants, and a ShiViz style communciation graph. These
+building a time curve, or approximate FSM, from the logs of a system.
+Further, Pangaea incorporates a graphical representation of likely
+data invariants, and a ShiViz style communication graph. These
 features allow developers to quickly identify deviant behaviour in
 their systems by contrasting their mental model with state machines
-and invariants detected at runtime. When deviant behavior is detected
+and invariants detected at runtime. When deviant behaviour is detected
 Pangaea provides tools for zooming in on the execution, to examine
 concrete state.
 

@@ -38,7 +38,7 @@ using protocol specifications which define a finite state machines for the
 systems behaviour. The state of instantiated systems follow the logic of their
 protocols, and the state of the system is altered accordingly. Our primary
 contribution of this work is a state differentiation technique which extracts
-protocol specific behavior from the logs of a distributed system.
+protocol specific behaviour from the logs of a distributed system.
 
 \subsubsection{System Instrumentation}
 
@@ -127,7 +127,7 @@ each vector. Formally we compute $P^n$ where $\forall i,j \in P^{hm}, P^n_{i,j}
 = \sqrt{(P^{hm}_{i,j,1})^2 + (P^{hm}_{i,j,2})^2 +\dots + (P^{hm}_{i,j,n})^2 }$.
 
 The indices of $P^n$ are distances between the states of snapshots.
-Section~\ref{time curve} explains the procedure by which these distances are
+Section~\ref{sec:time-curve} explains the procedure by which these distances are
 plotted graphically, and linked temporally.
 
 \subsection{Distributed Invariants}
@@ -150,7 +150,7 @@ invariants which were not violated. The number of invariants detected can be
 large. Further, many invariants are transitive, and interpreting their
 significance requires expertise. We produce a graph of Dinv's invariant output
 to consolidate large amounts of data and help users understand transitive
-invariants. Section~\ref{invariant-graph} details our invariant
+invariants. Section~\ref{sec:invariant-graph} details our invariant
 graphing technique.
 
 \subsubsection{Communication Graph}
@@ -162,8 +162,8 @@ under these conditions. Communication is a central component of distributed
 systems. Understanding how nodes in a system communicate is key for reasoning
 about corner cases, and checking that a system has executed correctly. A
 canonical way of visualizing message passing is a communication
-graph~\cite{lamport}{ShiViz}. We compute communication graphs from the logs of
+graph~\cite{Lamport78,BeschastnikhWBE2016}. We compute communication graphs from the logs of
 an execution. Logs of a systems execution also contain vector clocks. Using the
 vector clocks from the logs we use the happens-before relationship to construct
-a communication graph. Section~\ref{communication-graph} covers the specifics
+a communication graph. Section~\ref{sec:communication-graph} covers the specifics
 of how the graph is rendered.
