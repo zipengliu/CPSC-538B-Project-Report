@@ -89,5 +89,49 @@ beginning of the clusters execution.
 \subsection{Invarinat Graph}
 \label{invariant-graph}
 
+The invariant graph is composed of points, corresponding to variables,
+and edges, which are invariant relationships between the variables.
+The invariants Pangaea renders are calculated by Dinv~\cite{dinv}.
+Dinv reports invariants in the same format as Daikon~\cite{Ernst01}.
+Figure~\ref{fig:dinv-output} is Dinv's invariant output from analyzing
+etcd raft. These invariants can be difficult to comprehend for
+developers unfamilar with the format. Futher the textual represetation
+obfistaces the transitive properties of the invariants, requireing the
+user to reason about them.
+
+Pangea graphs the systems invariants to present them intuitivly, in a
+way which communicates the transitive nature of the invariants. We
+implemented four invariant encodings for relationships which hold over
+integers, and a subset of which hold over more general types.
+Specifically a thin black line denotes equality, while a dashed black
+line denotes inequality. Both of these relationships are vaild on
+arbetrary data so they are graphed for all types, such as strings,
+booleans, and integers. Light blue triangular edges correspond to the
+\emph{less than} relationship. Two corners of the triagle are attached
+to the greater variable, while a single is attached to the lesser.
+Similarly a light blue triange with a black border represents the
+\emph{greater than or equal too} relation. Users can select a
+variable, and all tansitive relations are highligted in red. When a
+variable is highlighted, and variables which do not have a transitive
+relationship have their names removed from the graph, to increase
+ledgeability.
+
+Figure~\ref{fig:invariant-graph} is an invariant graph generated from
+Dinv's invariant output in Figure~\ref{fig:dinv-output}.
+Figure~\ref{fig:invariant-graph}A is the static represetnation of the
+graph.  All variabile names, and relationships are visable to the
+user. Figure~\ref{fig:invariant-graph}B is the result of a user clicking
+on the \emph{C-state} point.
+
+\begin{figure}[h]
+    \includegraphics[width=0.5\linewidth]{fig/dinv-output}%
+    \caption{Dinv's invariant output from analyzing etcd.\label{fig:dinv-output}}%
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{fig/invariant-graph}%
+    \caption{Pangaea's invariant graph generated from Dinv's invaraints in Figure~\ref{fig:dinv-output}.A) is a static rendering of the invariants. B) User selected invariants \label{fig:invariant-graph}}%
+\end{figure}
+
 \subsection{Communication Graph}
 \label{communication-graph}
