@@ -1,0 +1,42 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+\label{sec:discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+A course project is limited by the scope, but there is a lot more can be done to make
+Pangaea a more practical tool instead of a prototype. 
+First of all, there are some additional tasks we can implement to enhance the 
+functionality of Pangaea.  Currently users have no control over the differentiation
+function, but to mitigate various distributed systems, we might require various 
+differentiation functions.  We can switch between multiple ways of calculation of 
+two states, allow users to control what should be consider into the distance, and 
+also composition of both.
+For example, we can have a subtraction function for variables with the type of a number,
+xor function for other types, and average all the differentiation parts.
+We need an interface to specify these differentiation algorithms.
+
+Second, it is easy to see the big picture from the time curve, but hard
+to understand the cause of proximity (why two states are close or distant).  This is
+actually a known problem for dimension reduction: despite the fact that people
+can see clusters from the result of dimension reduction, but they have problems in
+understanding and trusting the results, especially there is non-linear deformation.
+There is already some effort to address this problem~\cite{stahnke2016probing}, but
+in our case, we can mitigate by allowing users to compare two or multiple states
+with visual aids, such as encoding the largest difference between two selected states.
+Addressing comparison among states would allow users to better understand 
+the details of transition of states.
+
+
+Third, the invariants graph only takes into account the output of Daikon.  
+Imagine there is a bug in the execution which breaks an assumed invariant.  Daikon
+would not output anything about this because the assumed invariant is 
+invalidated only once.  There is no way the user can detect such kind of infrequent
+anomalies because it is absent from the input of the invariant graph in the first
+place.  Therefore, it would be beneficial to also consider the input of Daikon, which
+is, actually, the dumped variables for each state.  For example, for bi-variable
+relationships, we can use scatterplot matrix (SPLOM) with techniques like scagnostics
+~\cite{wilkinson2006high} to narrow down interesting areas.
+
+To make a practical tool, we also need usability evaluations to make sure users can
+understand the graphical representation and ways of interaction.
