@@ -3,23 +3,22 @@
 
 
 \noindent{\textbf{Distributed Snapshot}} is an algorithm which
-proposes that consistent distributed state can be captured without
-interfering with the execution of a system itself
-~\cite{dist_snapshots_Chandy1985}.  Distributed snapshots can be
-computed online or mined from a log containing vector clocks which
-provide a partial ordering of events in a
-system~\cite{mattern_vector_clocks_1989}. We consider distributed
-snapshots to be a fundamental granularity for examining consistent
-state in a distributed system. Our state analysis technique is therefore applied at the level
+captures consistent distributed state without interfering with the
+execution of a system itself~\cite{dist_snapshots_Chandy1985}.
+Distributed snapshots can be computed online or mined from a log
+containing vector clocks which provide a partial ordering of events in
+a system~\cite{mattern_vector_clocks_1989}. We consider distributed
+snapshots to be a fundamental granularity for state in a distributed
+system. Our state analysis technique is therefore applied at the level
 of a distributed snapshot.
 
 \noindent{\textbf{\dinv}} is a tool which detects likely data invariants in distributed
 systems~\cite{dinv}. \dinv operates by instrumenting distributed
 systems to log state and vector clocks. Execution logs from the nodes
-of the system are merged together, and the state of the system is
+of the system are merged together. The state of the system is
 reconstructed and output as a distributed system trace. \dinv
-leverages Daikon to automatically infer data invariants on the trace.
-We plan to use \dinv as a tool for capturing distributed state.
+leverages Daikon to automatically infer data invariants on the trace~\cite{Ernst01}.
+We use \dinv as a tool for capturing distributed state.
 
 \noindent{\textbf{Visualization}} is useful for helping users
 comprehend complicated data.  Understanding distributed systems is a
@@ -27,31 +26,30 @@ challenging task for system designers, software developers and
 students because of their inherent complexity.  Prior work on the
 visualization on system traces has demonstrated that similarities in
 the traces between software versions can be meaningfully conveyed to
-developers~\cite{6613833}~\cite{Reynolds_detectingthe}. Alternative work has demonstrated that
-visualizing concurrent system traces using partial orderings can help
-developers reason about interleaving
-executions~\cite{6650534}~\cite{7272586}~\cite{isaacs2014combing}. 
-We consider the state of a
-system to be a direct artifact of a system trace. 
-To our knowledge few attempts have been made to visualize distributed system traces, 
-and by extension distributed state traces.  
-Beschastnikh et. al built the ShiViz~\cite{BeschastnikhWBE2016} to generate an
-interactive communication graph (a time-space diagram) using distributed 
-system execution logs, which is a stream of events with their vector clocks.
-The happened-before relation between events is derived from the vector clocks,
-and it actually represents message sending and receiving in the system.
-Such a communication graph is straightforward to understand who sends what 
-to whom at a specific time, but not easy to grasp the big picture, especially
-distributed states.  
-Though ShiViz can discover graph ``motif'', frequently recurring communication patterns,
-but it is limited to work under 4 events and certain motif finding algorithms
-that might not understand the communication pattern as a person does.
-Isaacs et. al developed Ravel~\cite{isaacs2014combing}
-to visualize parallel execution traces, but their focus is on how to 
-scale it up in the number of nodes and span of time, which actually
-ignores the state of the system.  Ravel can provide insights for 
-certain communication patterns, but it cannot know any information
-about important distributed states.
+developers~\cite{6613833}~\cite{Reynolds_detectingthe}. Alternative
+work has demonstrated that visualizing concurrent system traces using
+partial orderings can help developers reason about interleaving
+executions~\cite{6650534}~\cite{7272586}~\cite{isaacs2014combing}.  We
+consider the state of a system to be a direct artifact of a system
+trace.  To our knowledge few attempts have been made to visualize
+distributed system traces, and by extension distributed state traces.
+Beschastnikh et. al built the ShiViz~\cite{BeschastnikhWBE2016} to
+generate an interactive communication graph (a time-space diagram)
+using distributed system execution logs, which is a stream of events
+with their vector clocks.  The happened-before relation between events
+is a property of vector clocks, and it establishes a partial ordering
+on all events in a system.  Such a communication graph is
+straightforward to understand who sends what to whom at a specific
+time, but not easy to grasp the big picture, especially distributed
+states.  Though ShiViz can discover graph ``motifs'', frequently
+recurring communication patterns, but it is limited to work under 4
+events and certain motif finding algorithms that might not understand
+the communication pattern as a person does.  Isaacs et. al developed
+Ravel~\cite{isaacs2014combing} to visualize parallel execution traces,
+but their focus is on how to scale it up in the number of nodes and
+span of time, which actually ignores the state of the system.  Ravel
+can provide insights for certain communication patterns, but it cannot
+know any information about important distributed states.
 
 %There are a few studies focusing on 
 %performance diagnositics of parallel or distributed systems, but few are done

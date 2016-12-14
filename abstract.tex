@@ -9,23 +9,22 @@ non-determinism leads developers to misinterpret their systems
 behaviour. Indeed, even small systems require complex reasoning to
 determine if their behaviour is correct.  Developers
 characteristically log executions; when unspecified or deviant
-behaviour is observed, the culprit is determined through laborious log
-inspection. Specifications are useful for defining correct behaviour,
-but proving that a system adheres to a specification is beyond the
-capabilities of modern techniques.  Such shortcomings demand new tools
-to help developers better understand their systems, and quickly
-identify deviant behaviour.  
-Distributed
-state, communication patterns, and data invariants are useful
-execution artifacts for reasoning about a systems behaviour.  However,
-interpreting them from logs alone is tricky and error prone.  
-Using visualizations, large amounts of
-information can be concisely, and meaningfully encoded. 
-We propose Pangaea, a visual tool to understand execution traces in
-distributed systems.  
-Using novel distributed state differentiation
+behaviour is observed, the culprit is found by laboriously inspecting
+logs. Specifications are useful for defining correct behaviour, and
+helping developers understand their systems abstractly, but real
+systems often drift substantially from their specifications. Tools
+which mine specifications from real systems can help developers
+understand their systems at the same level of abstraction, and quickly
+identify deviant behaviour.  Distributed state, communication
+patterns, and data invariants are useful execution artifacts for
+reasoning about a systems behaviour.  However, interpreting them from
+logs alone is tricky and error prone.  Using visualizations, large
+amounts of information can be concisely, and meaningfully encoded.  We
+propose Pangaea, a visual tool to understand execution traces in
+distributed systems.  Using novel distributed state differentiation
 Pangaea builds approximate, high level, finite state machines derived
 from dynamic behaviour. Deviations from expected state machines can be
 inspected using a graph of the systems invariants, and communication
-graph. 
-%\textbf{We evaluated Pangaea$\dots$}.
+graph. These visualization provide a means for identifing deviant
+behaviour at an abstract level, and facilities for zooming in on
+concrete details.
