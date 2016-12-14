@@ -3,22 +3,22 @@
 \label{sec:visuals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Pangaea is composed of three primary visual components. Each component is
-tailored to understanding systems at different granularities. The
-first component is the time curve, proposed by Bach et. al~\cite{Bach2015timecurves}. 
-The time curve plots a point for
-each snapshot collected from a systems logs. The distance between each
+Pangaea is composed of three primary visual components. Each component
+is tailored to understanding systems at different granularities. The
+first component is the time curve, proposed by Bach et.
+al~\cite{Bach2015timecurves}.  The time curve plots a point for each
+snapshot collected from a systems logs. The distance between each
 point is the difference in their state as calculated in
 Section~\ref{differentiation-algorithm}. The points are connected by a
 curve which links them temporally, creating an approximate FSM from
 the execution. Second likely data invariants, mined from the logs, are
-plotted graphically. Points in the graph are logged variables collected
-from all nodes present at runtime. Edges connecting the points are
-invariants on their values. Finally Pangaea renders a ShiViz style
-communication graph. The vertical lines of the graph correspond to
-individual nodes. Edges between the vertical lines are messages sent
-between the nodes. Together these visuals provide a comprehensive view
-of the systems runtime behaviour.
+plotted graphically. Points in the graph are logged variables
+collected from all nodes present at runtime. Edges connecting the
+points are invariants on their values. Finally Pangaea renders a
+ShiViz style communication graph. The vertical lines of the graph
+correspond to individual nodes. Edges between the vertical lines are
+messages sent between the nodes. Together these visuals provide a
+comprehensive view of the systems runtime behaviour.
 
 To generate examples of our visualizations we instrumented and
 executed a three node cluster of etcd~\cite{etcdraft}. Etcd is a
@@ -30,7 +30,6 @@ issued 50 put requests, followed by 50 get requests.
 
 \subsection{Time Curve}
 \label{sec:time-curve}
-
 
 Each point in the time curve correlates to a single snapshot.  Therein
 each point is representative of the system as a whole.  A result of
@@ -50,7 +49,6 @@ aligned horizontally.  Before finalizing the position of points,
 we remove overlapping by bouncing off the points that are too close
 to each other, otherwise highly similar states would result in
 serious occlusion, which leads to misunderstanding.
-
 
 Each point is also
 color coded based on their temporal ordering. The first snapshot is
@@ -117,7 +115,7 @@ beginning of the clusters execution.
     
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{fig/linear-server}%
-    \caption{Time curve generated from \textbf{TODO}. \label{fig:linear-server}}%
+    \caption{Time curve from a toy 3 node system which calculates linner equasions from random values. Systems with random state, produce less structured state machines. \label{fig:linear-server}}%
 \end{figure}
 
 \begin{figure}[h]
