@@ -1,0 +1,30 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tool}
+\label{sec:tool}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Pangaea is implemented in 3 components, a state differenitation
+component \footnote{https://github.com/wantonsolutions/Dviz}, a server
+for hosing pre-computed examples
+\footnote{https://github.com/zipengliu/PangaeaServer}, and a client
+which renders each visual component
+\footnote{https://github.com/zipengliu/Pangaea} .
+
+The state differentiation component is written in Go, and implemented
+in 389 LOC. Our decisions to write our differential caluator is Go was
+two fold. First Dinv analyzes systems writen in Go, and generated Gob
+encoded output. By using Go we substantially reduced the effort of
+integrating the two projects. Second, Go is fast, and has powerful
+language support for concurrancy. Calculating snapshot differentials
+is an imbarisingly parallel task, and we were able to produce a
+concise automatically scaleable solution.
+
+Pangaea's client and server are written in Javascript, and use
+Node.js. Additionally the client is written using the React framework.
+The client is 1597 LOC, and the server is 140. We chose Javascript to
+make Pangaea easily accessable to users. The time and effort of
+insturmenting, and anyalzing a distributed system with Dinv is too
+large for most users, and we wanted to provide them with a means to
+quickly interact with Pangaea's visualizations.
+
+
